@@ -10,10 +10,10 @@ app.set("view engine", "pug");
 
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/", (req, res) => {
-  res.render("email", {
+let addContent = () => {
+  return {
     company_name: "Zypher",
-    logo_img: "/img/logo.png",
+    company_logo: "/img/logo.png",
     tagline: "Thank you for your business",
     subject: "Here are your new policy details!",
     header_img:
@@ -23,9 +23,9 @@ app.get("/", (req, res) => {
       { title: "Policy 1", description: "This is some policy" },
       { title: "Policy 1", description: "This is some policy" },
       {
-        title: "Policy 1",
-        description:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
+        title:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
+        description: "This is some policy"
       }
     ],
     rating_title: "How would you rate your overall shopping experience?",
@@ -45,7 +45,11 @@ app.get("/", (req, res) => {
         ["Link 5", "#href"]
       ]
     }
-  });
+  };
+};
+
+app.get("/", (req, res) => {
+  res.render("email", addContent());
 });
 
 app.get("/demo", (req, res) => {
