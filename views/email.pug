@@ -1,8 +1,8 @@
-doctype transitional
-html(xmlns='http://www.w3.org/1999/xhtml')
+doctype html
+html(style='margin: 0; padding: 0; box-sizing:border-box')
   head
     meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
-    title Zypher Email Template
+    title #{company_name} Email Template
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.3.1/css/all.css', integrity='sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU', crossorigin='anonymous')
     link(href="https://fonts.googleapis.com/css?family=Questrial", rel="stylesheet")
@@ -14,12 +14,12 @@ html(xmlns='http://www.w3.org/1999/xhtml')
             table(align='center', cellpadding='0', cellspacing='0', width='100%')
               tbody
                 tr 
-                  td(align='right' style='padding: 8px 8px 0 8px; color: #aaa; font-size: 0.7em;') 
-                    span(style='width: 100%; max-width: 500px; display: block')
-                      | &copy; COPYWRITE CONTENT
+                  td(align='center' style='padding: 8px 8px 0 8px; color: #aaa; font-size: 0.7em;') 
+                    span(style='width: 100%; max-width: 500px; display: block; text-transform: uppercase; text-align: right')
+                      | &copy; Copyrite #{company_name}
                 tr 
                   td(align='center')
-                    img(src='/img/logo.png', height='50px')
+                    img(src=logo_img, height='50px')
                 tr 
                   td(style='padding: 16px')
                     table(align='center', cellpadding='0', cellspacing='0', width='100%')
@@ -27,15 +27,15 @@ html(xmlns='http://www.w3.org/1999/xhtml')
                         tr
                           td(align='center' style='color: #8c43ff; font-size: 1.2em; font-weight: bold')
                             span(style='width: 100%; max-width: 500px; display: block')
-                              | Welcome to Zypher
+                              | Welcome to #{company_name}
                         tr 
                           td(align='center' style='color: #597682; font-size: 1.5em; padding: 8px 0')
-                            span(style='width: 100%; max-width: 500px; display: block')
-                              | Thank you for your business
-                tr 
-                  td(align='center', style='vertical-align: middle; padding: 32px 32px 16px')
-                    span(style='width: 100%; max-width: 500px; display: block')
-                      img(src='/img/bg.jpg', style='width: 60%; max-width: 500px')
+                            span(style='width: 100%; max-width: 500px; display: block')=tagline
+                if header_img
+                  tr 
+                    td(align='center', style='vertical-align: middle; padding: 8px 32px')
+                      span(style='width: 100%; max-width: 500px; display: block')
+                        img(src=header_img, style='width: 60%; max-width: 500px')
                 tr 
                   td(style='padding: 24px 64px')
                     table(align='center', cellpadding='0', cellspacing='0', width='100%', style='max-width: 500px')
@@ -43,55 +43,22 @@ html(xmlns='http://www.w3.org/1999/xhtml')
                         tr
                           td(style='padding: 8px; font-weight: bold') 
                             span(style='width: 100%; max-width: 500px; display: block; color: #191919')
-                              | Here are your new policy details!
-                        tr
-                          td(style='padding: 8px')
-                            table(align='center', cellpadding='0', cellspacing='0', width='100%')
-                              tbody
-                                tr
-                                  td(style='font-size: 0.9em; padding: 2px 0; color: #597682')
-                                    span(style='width: 100%; max-width: 500px; display: block')
-                                      | Policy 1
-                                tr
-                                  td(style='font-size: 0.9em; font-weight: bold; padding: 2px 0')
-                                    span(style='width: 100%; max-width: 500px; display: block; color: #191919')
-                                      | This is some policy
-                        tr
-                          td(style='padding: 8px')
-                            table(align='center', cellpadding='0', cellspacing='0', width='100%')
-                              tbody
-                                tr
-                                  td(style='font-size: 0.9em; padding: 2px 0; color: #597682')
-                                    span(style='width: 100%; max-width: 500px; display: block')
-                                      | Policy 1
-                                tr
-                                  td(style='font-size: 0.9em; font-weight: bold; padding: 2px 0')
-                                    span(style='width: 100%; max-width: 500px; display: block; color: #191919')
-                                      | This is some policy
-                        tr
-                          td(style='padding: 8px')
-                            table(align='center', cellpadding='0', cellspacing='0', width='100%')
-                              tbody
-                                tr
-                                  td(style='font-size: 0.9em; padding: 2px 0; color: #597682')
-                                    span(style='width: 100%; max-width: 500px; display: block')
-                                      | Policy 1
-                                tr
-                                  td(style='font-size: 0.9em; font-weight: bold; padding: 2px 0')
-                                    span(style='width: 100%; max-width: 500px; display: block; color: #191919')
-                                      | This is some policy
-                        tr
-                          td(style='padding: 8px')
-                            table(align='center', cellpadding='0', cellspacing='0', width='100%')
-                              tbody
-                                tr
-                                  td(style='font-size: 0.9em; padding: 2px 0; color: #597682')
-                                    span(style='width: 100%; max-width: 500px; display: block')
-                                      | Lorem Ipsum is simply dummy text of the printing and typesetting industry
-                                tr
-                                  td(style='font-size: 0.9em; font-weight: bold; padding: 2px 0')
-                                    span(style='width: 100%; max-width: 500px; display: block; color: #191919')
-                                      | This is some policy
+                              =subject
+
+                        if body
+                          each content, index in body
+                            tr
+                              td(style='padding: 8px')
+                                table(align='center', cellpadding='0', cellspacing='0', width='100%')
+                                  tbody
+                                    tr
+                                      td(style='font-size: 0.9em; padding: 2px 0; color: #597682')
+                                        span(style='width: 100%; max-width: 500px; display: block')
+                                          =content.title
+                                    tr
+                                      td(style='font-size: 0.9em; font-weight: bold; padding: 2px 0')
+                                        span(style='width: 100%; max-width: 500px; display: block; color: #191919')
+                                          =content.description
                 tr 
                   td(style='padding: 36px; color: #fff; background-color: #8c43ff')
                     table(align='center', cellpadding='0', cellspacing='0', width='100%', style='max-width: 600px')
@@ -99,7 +66,7 @@ html(xmlns='http://www.w3.org/1999/xhtml')
                         tr
                           td(align='center' style='font-weight: bold; padding: 0 16px') 
                             span(style='width: 100%; max-width: 500px; display: block')
-                              | How would you rate your overall shipping experience?
+                              =rating_title
                         tr 
                           td(align='center' style='padding: 24px 16px')
                             table(align='center', cellpadding='0', cellspacing='0', width='100%', style='max-width: 600px')
@@ -112,7 +79,7 @@ html(xmlns='http://www.w3.org/1999/xhtml')
                                           td(align='center' style='font-size: 2em; padding-bottom: 8px')
                                             i.far.fa-star
                                         tr 
-                                          td(align='center' style='font-size: 0.7em') Worst
+                                          td(align='center' style='font-size: 0.7em') Poor
                                   td(align='center', width='20%')
                                     table(align='center', cellpadding='0', cellspacing='0', width='100%')
                                       tbody
@@ -120,7 +87,7 @@ html(xmlns='http://www.w3.org/1999/xhtml')
                                           td(align='center' style='font-size: 2em; padding-bottom: 8px')
                                             i.far.fa-star
                                         tr 
-                                          td(align='center' style='font-size: 0.7em') Bad
+                                          td(align='center' style='font-size: 0.7em') Fair
                                   td(align='center', width='20%')
                                     table(align='center', cellpadding='0', cellspacing='0', width='100%')
                                       tbody
@@ -164,7 +131,7 @@ html(xmlns='http://www.w3.org/1999/xhtml')
                       tbody
                         tr
                           td(align='center', style='padding: 16px')
-                            img(src='/img/money.png', style='height: 70px')
+                            img(src='/img/wallet.svg', style='height: 70px')
                         tr
                           td
                             table(align='center', cellpadding='0', cellspacing='0', width='100%')
@@ -182,41 +149,35 @@ html(xmlns='http://www.w3.org/1999/xhtml')
                                     button(type='button', style='border: none; padding: 12px 24px; border-radius: 25px; background-color: #8c43ff; color: #fff; font-weight: bold') 
                                       span(style='padding-right: 16px')
                                         i.fa.fa-phone(style='transform: rotateZ(90deg)')
-                                      | 9999 888 777
+                                      =phone
                         tr
                           td(style='padding: 32px')
                             table(align='center', cellpadding='0', cellspacing='0', width='100%', style='max-width: 200px')
                               tbody
                                 tr 
                                   td(align='center' width='30.33%')
-                                    a(href="#", style='height: 32px; width: 32px; display: block; line-height: 32px; border: 1px solid #8c43ff; border-radius: 25px; color: #8c43ff')
+                                    a(href=social.fb_link, style='height: 32px; width: 32px; display: block; line-height: 32px; border: 1px solid #8c43ff; border-radius: 25px; color: #8c43ff')
                                       i.fab.fa-facebook-f(style='line-height: 32px')
                                   td(align='center' width='30.33%')
-                                    a(href="#", style='height: 32px; width: 32px; display: block; line-height: 32px; border: 1px solid #8c43ff; border-radius: 25px; color: #8c43ff')
-                                      i.fab.fa-twitter(style='line-height: 32px')
+                                    a(href=social.instagram_link, style='height: 32px; width: 32px; display: block; line-height: 32px; border: 1px solid #8c43ff; border-radius: 25px; color: #8c43ff')
+                                      i.fab.fa-instagram(style='line-height: 32px')
                                   td(align='center' width='30.33%')
-                                    a(href="#", style='height: 32px; width: 32px; display: block; line-height: 32px; border: 1px solid #8c43ff; border-radius: 25px; color: #8c43ff')
-                                      i.fab.fa-google-plus-g(style='line-height: 32px')
+                                    a(href=social.linkedin_link, style='height: 32px; width: 32px; display: block; line-height: 32px; border: 1px solid #8c43ff; border-radius: 25px; color: #8c43ff')
+                                      i.fab.fa-linkedin-in(style='line-height: 32px')
                         tr          
                           td(align='center')
-                            img(src='/img/logo.png', height='50px')
+                            img(src=logo_img, height='50px')
                         tr
                           td(align='center', style='font-size: 0.8em; color: #597682') 
                             span(style='width: 100%; max-width: 500px; display: block')
-                              | Lorem Ipsum is simply dummy text
+                              =footer.text
                         tr
                           td(align='center', style='padding: 16px 0')
                             table(align='center', cellpadding='0', cellspacing='0', width='100%', style='max-width: 500px')
                               tbody
                                 tr 
-                                  td(align='center', style='font-size: 0.8em') 
-                                    a(href='#', style='text-decoration: none; color: #597682') Lorem
-                                  td(align='center', style='font-size: 0.8em; color: #aaa') |
-                                  td(align='center', style='font-size: 0.8em') 
-                                    a(href='#', style='text-decoration: none; color: #597682') Lorem
-                                  td(align='center', style='font-size: 0.8em; color: #aaa') |
-                                  td(align='center', style='font-size: 0.8em') 
-                                    a(href='#', style='text-decoration: none; color: #597682') Lorem
-                                  td(align='center', style='font-size: 0.8em; color: #aaa') |
-                                  td(align='center', style='font-size: 0.8em') 
-                                    a(href='#', style='text-decoration: none; color: #597682') Lorem
+                                  each link, index in footer.links
+                                    td(align='center', style='font-size: 0.8em') 
+                                      a(href=link[1], style='text-decoration: none; color: #597682')=link[0]
+                                    if index !== footer.links.length - 1
+                                      td(align='center', style='font-size: 0.8em; color: #aaa') |
